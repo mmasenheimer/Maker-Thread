@@ -29,11 +29,21 @@ public class ErrorController {
     public ResponseEntity<ApiErrorResponse> handleIllegalArgumentException(IllegalArgumentException ex) {
         log.warn("Bad request: ", ex);
         ApiErrorResponse error = ApiErrorResponse.builder()
-
                 .status(HttpStatus.BAD_REQUEST.value())
                 .message("Invalid request")
                 .build();
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+
+    }
+
+    @ExceptionHandler(IllegalStateException.class)
+    public ResponseEntity<ApiErrorResponse> handleIllegalStateException(IllegalArgumentException ex) {
+        log.warn("Bad request: ", ex);
+        ApiErrorResponse error = ApiErrorResponse.builder()
+                .status(HttpStatus.CONFLICT.value())
+                .message("Invalid request")
+                .build();
+        return new ResponseEntity<>(error, HttpStatus.CONFLICT);
 
     }
 }
