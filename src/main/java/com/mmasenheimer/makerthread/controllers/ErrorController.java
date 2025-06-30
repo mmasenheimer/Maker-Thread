@@ -43,6 +43,7 @@ public class ErrorController {
                 .status(HttpStatus.CONFLICT.value())
                 .message("Invalid request")
                 .build();
+
         return new ResponseEntity<>(error, HttpStatus.CONFLICT);
 
     }
