@@ -2,6 +2,7 @@ package com.mmasenheimer.makerthread.controllers;
 
 
 import com.mmasenheimer.makerthread.domain.dtos.ApiErrorResponse;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -60,4 +61,14 @@ public class ErrorController {
 
     }
 
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<ApiErrorResponse> handleEntityNotFoundException(IllegalArgumentException ex) {
+        ApiErrorResponse error = ApiErrorResponse.builder()
+                .status(HttpStatus.NOT_FOUND.value())
+                .message(ex.getMessage())
+                .build();
+
+        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+
+    }
 }

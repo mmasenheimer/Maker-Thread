@@ -3,6 +3,7 @@ package com.mmasenheimer.makerthread.services.impl;
 import com.mmasenheimer.makerthread.domain.entities.Category;
 import com.mmasenheimer.makerthread.repositories.CategoryRepository;
 import com.mmasenheimer.makerthread.services.CategoryService;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -45,6 +46,12 @@ public class CategoryServiceImpl implements CategoryService {
             categoryRepository.delete(category.get());
         }
 
+    }
+
+    @Override
+    public Category getCategoryById(UUID id) {
+        return categoryRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Category not found with id" + id));
     }
 
 }

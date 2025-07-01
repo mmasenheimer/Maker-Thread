@@ -1,6 +1,5 @@
 package com.mmasenheimer.makerthread.domain.dtos;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,11 +11,9 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class TagResponse {
+public class AuthorDto {
 
     private UUID id;
     private String name;
-    private Integer postCount;
-
 
 }

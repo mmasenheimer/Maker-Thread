@@ -1,7 +1,7 @@
 package com.mmasenheimer.makerthread.mappers;
 
 import com.mmasenheimer.makerthread.domain.PostStatus;
-import com.mmasenheimer.makerthread.domain.dtos.TagResponse;
+import com.mmasenheimer.makerthread.domain.dtos.TagDto;
 import com.mmasenheimer.makerthread.domain.entities.Post;
 import com.mmasenheimer.makerthread.domain.entities.Tag;
 import org.mapstruct.Mapper;
@@ -14,8 +14,7 @@ import java.util.Set;
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface TagMapper {
     @Mapping(target = "postCount", source = "posts", qualifiedByName = "calculatePostCount")
-
-    TagResponse toTagResponse(Tag tag);
+    TagDto toTagResponse(Tag tag);
 
     @Named("calculatePostCount")
     default Integer calculatePostCount(Set<Post> posts) {
