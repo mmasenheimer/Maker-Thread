@@ -1,5 +1,7 @@
 package com.mmasenheimer.makerthread.mappers;
 
+import com.mmasenheimer.makerthread.domain.CreatePostRequest;
+import com.mmasenheimer.makerthread.domain.dtos.CreatePostRequestDto;
 import com.mmasenheimer.makerthread.domain.dtos.PostDto;
 import com.mmasenheimer.makerthread.domain.entities.Category;
 import com.mmasenheimer.makerthread.domain.entities.Post;
@@ -14,4 +16,6 @@ public interface PostMapper {
     @Mapping(target = "category", source = "author")
     @Mapping(target = "tags", source = "tags")
     PostDto toDto(Post post);
+
+    CreatePostRequest toCreatePostRequest(CreatePostRequestDto dto);
 }
