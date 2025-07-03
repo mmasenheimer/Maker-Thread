@@ -310,16 +310,19 @@ const PostForm: React.FC<PostFormProps> = ({
 
           <div className="space-y-2">
             <Select
-              label="Status"
-              selectedKeys={[status]}
-              onChange={(e) => setStatus(e.target.value as PostStatus)}
+                label="Status"
+                selectedKeys={[status]}
+                onChange={(e) => {
+                  const newStatus = e.target.value as PostStatus;
+                  if (newStatus === PostStatus.DRAFT || newStatus === PostStatus.PUBLISHED) {
+                    setStatus(newStatus);
+                  } else {
+                    console.warn("Invalid post status selected", newStatus);
+                  }
+                }}
             >
-              <SelectItem key={PostStatus.DRAFT} value={PostStatus.DRAFT}>
-                Draft
-              </SelectItem>
-              <SelectItem key={PostStatus.PUBLISHED} value={PostStatus.PUBLISHED}>
-                Published
-              </SelectItem>
+              <SelectItem key={PostStatus.DRAFT} value={PostStatus.DRAFT}>Draft</SelectItem>
+              <SelectItem key={PostStatus.PUBLISHED} value={PostStatus.PUBLISHED}>Published</SelectItem>
             </Select>
           </div>
 

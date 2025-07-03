@@ -62,7 +62,6 @@ public class Post {
     )
     private Set<Tag> tags = new HashSet<>();
 
-
     @Column(nullable = false)
     // Always want to have a created at time
     private LocalDateTime createdAt;
@@ -93,6 +92,7 @@ public class Post {
         this.createdAt = now;
         this.updatedAt = now;
         // When a post is created, updated and created at times are the same
+
     }
 
     @PreUpdate
