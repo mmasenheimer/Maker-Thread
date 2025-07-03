@@ -28,14 +28,25 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="max-w-md w-full space-y-8">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Sign in to your account
-          </h2>
-        </div>
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="max-w-md w-full space-y-8">
+          {/* Header and Link Block */}
+          <div className="space-y-4">
+            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+              Sign in to your account
+            </h2>
+            <div className="text-center text-sm text-gray-600">
+              New to MakerThread?{' '}
+              <button
+                  type="button"
+                  onClick={() => navigate('/register')}
+                  className="text-indigo-600 hover:underline focus:outline-none"
+              >
+                Create an account
+              </button>
+            </div>
+          </div>
+        <form className="mt-8 space-y-8" onSubmit={handleSubmit}>
           <div className="rounded-md shadow-sm space-y-4">
             <div>
               <label htmlFor="email" className="sr-only">
@@ -91,6 +102,7 @@ const LoginPage = () => {
             >
               {isLoading ? 'Signing in...' : 'Sign in'}
             </button>
+
           </div>
         </form>
       </div>
