@@ -43,6 +43,7 @@ public class User {
 
     @Column(nullable = false)
     private LocalDateTime createdAt;
+
     // Always want a time created at
 
     @Override
@@ -67,5 +68,4 @@ public class User {
         // The date created will populate the createdAt variable
 
     }
-
 }

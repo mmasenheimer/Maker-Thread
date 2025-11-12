@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @Slf4j
@@ -40,6 +41,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 if(userDetails instanceof MakerThreadUserDetails) {
                     request.setAttribute("userId", ((MakerThreadUserDetails) userDetails).getId());
                 }
+            }else {
+                // No token - set default test user for development
+                setDefaultTestUser(request);
             }
 
         } catch(Exception ex) {
@@ -49,6 +53,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         filterChain.doFilter(request, response);
 
+    }
+    private void setDefaultTestUser(HttpServletRequest request) {
+        UUID testUserId = UUID.fromString("33b0fc10-49bc-47b1-9e3e-9e8090660549");
+        request.setAttribute("userId", testUserId);
     }
 
     private String extractToken(HttpServletRequest request) {

@@ -32,7 +32,7 @@ public class securityConfig {
         MakerThreadUserDetailsService makerThreadUserDetailsService = new MakerThreadUserDetailsService(userRepository);
 
         String email = "user@test.com";
-        userRepository.findByEmail(email).orElseGet(() -> {
+        User testUser = userRepository.findByEmail(email).orElseGet(() -> {
             User newUser = User.builder()
                     .name("Test User")
                     .email(email)
@@ -49,13 +49,19 @@ public class securityConfig {
 
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.POST, "/api/v1/auth/login").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/v1/posts/drafts").authenticated()
-                        .requestMatchers(HttpMethod.GET, "/api/v1/posts/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/v1/categories/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/v1/tags/**").permitAll()
+//                        .requestMatchers(HttpMethod.POST, "/api/v1/auth/login").permitAll()
+//                        .requestMatchers(HttpMethod.GET, "/api/v1/posts/drafts").authenticated()
+//                        .requestMatchers(HttpMethod.GET, "/api/v1/posts/**").permitAll()
+//                        .requestMatchers(HttpMethod.GET, "/api/v1/categories/**").permitAll()
+//                        .requestMatchers(HttpMethod.GET, "/api/v1/tags/**").permitAll()
+//                        .requestMatchers(HttpMethod.POST, "/api/v1/categories/**").permitAll()
+//                        .requestMatchers(HttpMethod.POST, "/api/v1/tags/**").permitAll()
+//                        .requestMatchers(HttpMethod.POST, "/api/v1/posts/**").permitAll()
+//                        .requestMatchers(HttpMethod.POST, "/api/v1/posts/**").authenticated() // Add this line
+//                        .requestMatchers(HttpMethod.POST, "/api/v1/tags/**").authenticated()   // And this line
+
                         // Permit all GET requests to the above paths, anything else requires authentication
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll()
                 )
                 .csrf(csrf -> csrf.disable())
 
