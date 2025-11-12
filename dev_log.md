@@ -20,19 +20,17 @@
 
 ## 2025-07-09
 - Completed update and delete operations for Projects  
-- Set up one-to-many relationships between Users and Projects  
-- Integrated Swagger for API documentation  
+- Set up one-to-many relationships between Users and Projects   
 - Improved error handling and response messages for invalid requests  
 
 ## 2025-07-13
 - Implemented commenting system for projects (add, edit, delete)  
-- Added “like” functionality for projects  
 - Wrote unit tests for Comment and Like services  
 - Updated README with API endpoints and setup instructions  
 
 ## 2025-07-17
 - Deployed backend using Docker for local testing  
-- Tested full workflow: user registration → project creation → commenting → liking  
+- Tested full workflow
 - Fixed minor bugs in authentication flow and entity relationships  
 
 ## 2025-07-20
